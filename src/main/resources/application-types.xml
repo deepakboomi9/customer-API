@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="customers" format="json">
+      <types:shape format="weave" example="examples/customerAPI"><![CDATA[%dw 2.0
+
+type customers = {|
+  customers: Array<{|    id: Number {"typeId": "int"},     email: String,     accepts_marketing: Boolean,     created_at: String,     updated_at: String,     first_name: String,     last_name: String,     orders_count: Number {"typeId": "int"},     state: String,     total_spent: String,     last_order_id: Number {"typeId": "int"},     note: Null,     verified_email: Boolean,     multipass_identifier: Null,     tax_exempt: Boolean,     phone: Null,     tags: String,     last_order_name: String,     currency: String,     addresses: Array<{|      id: Number {"typeId": "int"},       customer_id: Number {"typeId": "int"},       first_name: Null,       last_name: Null,       company: Null,       address1: String,       address2: String,       city: String,       province: String,       country: String,       zip: String,       phone: String,       name: String,       province_code: String,       country_code: String,       country_name: String,       "default": Boolean    |}>, 
+    accepts_marketing_updated_at: String, 
+    default_address: {|
+      id: Number {"typeId": "int"}, 
+      customer_id: Number {"typeId": "int"}, 
+      first_name: Null, 
+      last_name: Null, 
+      company: Null, 
+      address1: String, 
+      address2: String, 
+      city: String, 
+      province: String, 
+      country: String, 
+      zip: String, 
+      phone: String, 
+      name: String, 
+      province_code: String, 
+      country_code: String, 
+      country_name: String, 
+      "default": Boolean
+    |}
+  |}>
+|} {"example": "{\\\"customers\\\":[{\\\"id\\\":207119551,\\\"email\\\":\\\"bob.norman@hostmail.com\\\",\\\"accepts_marketing\\\":false,\\\"created_at\\\":\\\"2020-04-06T10:34:43-04:00\\\",\\\"updated_at\\\":\\\"2020-04-06T10:34:43-04:00\\\",\\\"first_name\\\":\\\"Bob\\\",\\\"last_name\\\":\\\"Norman\\\",\\\"orders_count\\\":1,\\\"state\\\":\\\"disabled\\\",\\\"total_spent\\\":\\\"199.65\\\",\\\"last_order_id\\\":450789469,\\\"note\\\":null,\\\"verified_email\\\":true,\\\"multipass_identifier\\\":null,\\\"tax_exempt\\\":false,\\\"phone\\\":null,\\\"tags\\\":\\\"\\\",\\\"last_order_name\\\":\\\"#1001\\\",\\\"currency\\\":\\\"USD\\\",\\\"addresses\\\":[{\\\"id\\\":207119551,\\\"customer_id\\\":207119551,\\\"first_name\\\":null,\\\"last_name\\\":null,\\\"company\\\":null,\\\"address1\\\":\\\"Chestnut Street 92\\\",\\\"address2\\\":\\\"\\\",\\\"city\\\":\\\"Louisville\\\",\\\"province\\\":\\\"Kentucky\\\",\\\"country\\\":\\\"United States\\\",\\\"zip\\\":\\\"40202\\\",\\\"phone\\\":\\\"555-625-1199\\\",\\\"name\\\":\\\"\\\",\\\"province_code\\\":\\\"KY\\\",\\\"country_code\\\":\\\"US\\\",\\\"country_name\\\":\\\"United States\\\",\\\"default\\\":true}],\\\"accepts_marketing_updated_at\\\":\\\"2005-06-12T11:57:11-04:00\\\",\\\"default_address\\\":{\\\"id\\\":207119551,\\\"customer_id\\\":207119551,\\\"first_name\\\":null,\\\"last_name\\\":null,\\\"company\\\":null,\\\"address1\\\":\\\"Chestnut Street 92\\\",\\\"address2\\\":\\\"\\\",\\\"city\\\":\\\"Louisville\\\",\\\"province\\\":\\\"Kentucky\\\",\\\"country\\\":\\\"United States\\\",\\\"zip\\\":\\\"40202\\\",\\\"phone\\\":\\\"555-625-1199\\\",\\\"name\\\":\\\"\\\",\\\"province_code\\\":\\\"KY\\\",\\\"country_code\\\":\\\"US\\\",\\\"country_name\\\":\\\"United States\\\",\\\"default\\\":true}}]}"}
+
+]]></types:shape>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#35a43c36-fcf9-4231-a52e-6dbca5bf6f69">
+    <types:processor-declaration>
+      <types:output-event>
+        <types:message>
+          <types:payload type="customers"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>
